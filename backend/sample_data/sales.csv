@@ -1,0 +1,11 @@
+order_id,customer,product,category,price,quantity
+1,Alice,Laptop,Electronics,65000,1
+2,Bob,Mouse,Electronics,500,2
+3,Charlie,Keyboard,Electronics,1200,1
+4,David,Chair,Furniture,3500,2
+5,Eva,Table,Furniture,7000,1
+6,Frank,Monitor,Electronics,12000,1
+7,Grace,Notebook,Stationery,80,10
+8,Harry,Pen,Stationery,20,15
+9,Ivy,Bottle,Accessories,450,3
+10,Jack,Bag,Accessories,1200,2

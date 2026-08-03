@@ -12,3 +12,6 @@ class DatasetResponse(DatasetCreate):
 
     class Config:
         from_attributes = True
+
+class SQLQuery(BaseModel):
+    query: str
