@@ -10,6 +10,10 @@ import os
 import shutil
 from app.services.query_service import execute_query
 from app.services.csv_service import analyze_csv
+from sqlalchemy.orm import Session
+from fastapi import Depends
+from app.database import get_db
+import app.crud as crud
 
 from fastapi import HTTPException
 Base.metadata.create_all(bind=engine)
@@ -51,10 +55,20 @@ def analyze_uploaded_csv(file: UploadFile = File(...)):
     }
 
 @app.post("/query")
-def run_query(request: schemas.SQLQuery):
-
+def run_query(
+    request: schemas.SQLQuery,
+    db: Session = Depends(get_db)
+):
     try:
-        return execute_query(request.query)
+        result, execution_time = execute_query(request.query)
+
+        crud.create_query_history(
+            db=db,
+            query=request.query,
+            execution_time=execution_time
+        )
+
+        return result
 
     except ValueError as e:
         raise HTTPException(
@@ -62,8 +76,8 @@ def run_query(request: schemas.SQLQuery):
             detail=str(e)
         )
 
-    except Exception:
+    except Exception as e:
         raise HTTPException(
             status_code=500,
-            detail="An unexpected error occurred."
+            detail=str(e)
         )
