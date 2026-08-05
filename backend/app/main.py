@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
-
+from fastapi.responses import FileResponse
 
 from app.database import Base, engine, get_db
 from app import models, schemas, crud
@@ -14,7 +14,7 @@ from sqlalchemy.orm import Session
 from fastapi import Depends
 from app.database import get_db
 import app.crud as crud
-
+from app.services.export_service import export_to_csv
 from fastapi import HTTPException
 Base.metadata.create_all(bind=engine)
 
@@ -82,6 +82,41 @@ def run_query(
             detail=str(e)
         )
 
+@app.post("/query/export")
+def export_query(
+    request: schemas.SQLQuery,
+    db: Session = Depends(get_db)
+):
+    try:
+        result, execution_time = execute_query(request.query)
+
+        crud.create_query_history(
+            db=db,
+            query=request.query,
+            execution_time=execution_time
+        )
+
+        filepath = export_to_csv(result)
+
+        return FileResponse(
+            path=filepath,
+            filename="query_results.csv",
+            media_type="text/csv"
+        )
+
+    except ValueError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
+
+    
 @app.get("/history")
 def get_history(
     page: int = 1,
@@ -106,3 +141,26 @@ def search_history(
         db=db,
         search=search
     )
+
+@app.get("/dashboard/stats")
+def dashboard_stats(
+    db: Session = Depends(get_db)
+):
+    return crud.get_dashboard_stats(db)
+
+@app.get("/dashboard/top-queries")
+def top_queries(
+    limit: int = 5,
+    db: Session = Depends(get_db)
+):
+    results = crud.get_top_queries(db, limit)
+
+    return [
+        {
+            "query": row.query,
+            "count": row.count
+        }
+        for row in results
+    ]
+#.\venv\Scripts\Activate
+#python -m uvicorn app.main:app --reload
