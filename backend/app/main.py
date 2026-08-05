@@ -81,3 +81,28 @@ def run_query(
             status_code=500,
             detail=str(e)
         )
+
+@app.get("/history")
+def get_history(
+    page: int = 1,
+    limit: int = 10,
+    db: Session = Depends(get_db)
+):
+
+    skip = (page - 1) * limit
+
+    return crud.get_query_history(
+        db=db,
+        skip=skip,
+        limit=limit
+    )
+
+@app.get("/history/search")
+def search_history(
+    search: str,
+    db: Session = Depends(get_db)
+):
+    return crud.search_query_history(
+        db=db,
+        search=search
+    )
