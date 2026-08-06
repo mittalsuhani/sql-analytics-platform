@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from fastapi.responses import FileResponse
-
+from fastapi.middleware.cors import CORSMiddleware
 from app.database import Base, engine, get_db
 from app import models, schemas, crud
 
@@ -22,7 +22,16 @@ app = FastAPI(
     title="SQL Analytics Platform",
     version="1.0"
 )
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def root():

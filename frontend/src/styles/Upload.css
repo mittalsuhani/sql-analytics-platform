@@ -1,0 +1,30 @@
+.upload-page {
+    padding: 30px;
+}
+
+.upload-card {
+    background: white;
+    width: 450px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.1);
+}
+
+.upload-card input {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.upload-card button {
+    width: 100%;
+    padding: 12px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.upload-card button:hover {
+    background: #1d4ed8;
+}
