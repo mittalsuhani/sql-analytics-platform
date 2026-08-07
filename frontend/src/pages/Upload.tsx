@@ -5,6 +5,7 @@ import "../styles/Upload.css";
 function Upload() {
   const [file, setFile] = useState<File | null>(null);
   const [message, setMessage] = useState("");
+  const [analysis, setAnalysis] = useState<any>(null);
 
   const handleUpload = async () => {
     if (!file) {
@@ -21,6 +22,7 @@ function Upload() {
       console.log("Backend Response:", response.data);
 
       setMessage("Upload successful!");
+      setAnalysis(response.data.analysis);
     } catch (err: any) {
       console.error(err);
 
@@ -52,6 +54,13 @@ function Upload() {
         </button>
 
         <p>{message}</p>
+        {analysis && (
+          <div style={{ marginTop: "20px", textAlign: "left" }}>
+            <h3>Analysis</h3>
+            <pre>{JSON.stringify(analysis, null, 2)}</pre>
+          </div>
+        )}
+
       </div>
     </div>
   );
