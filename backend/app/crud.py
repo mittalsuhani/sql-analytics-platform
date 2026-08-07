@@ -52,8 +52,9 @@ def search_query_history(db, search: str):
         .all()
     )
 
-def get_dashboard_stats(db):
+from sqlalchemy import func
 
+def get_dashboard_stats(db):
     stats = (
         db.query(
             func.count(models.QueryHistory.id).label("total_queries"),
@@ -66,10 +67,12 @@ def get_dashboard_stats(db):
 
     return {
         "total_queries": stats.total_queries,
-        "average_execution_time_ms": round(stats.average_execution_time_ms or 0, 2),
-        "fastest_query_ms": stats.fastest_query_ms,
-        "slowest_query_ms": stats.slowest_query_ms,
+        "average_execution_time_ms": round(float(stats.average_execution_time_ms or 0), 2),
+        "fastest_query_ms": round(float(stats.fastest_query_ms or 0), 2),
+        "slowest_query_ms": round(float(stats.slowest_query_ms or 0), 2),
     }
+
+
 
 def get_top_queries(db, limit=5):
     return (

@@ -32,24 +32,38 @@ function QueryChart({ data }: Props) {
     >
       <h2>Query Execution Time</h2>
 
-      <ResponsiveContainer width="100%" height="90%">
-        <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
+      {data.length === 0 ? (
+        <p>No query history available yet.</p>
+      ) : (
+        <ResponsiveContainer width="100%" height="85%">
+          <LineChart data={data}>
+            <CartesianGrid strokeDasharray="3 3" />
 
-          <XAxis dataKey="name" />
+            <XAxis dataKey="name" />
 
-          <YAxis />
+            <YAxis
+              label={{
+                value: "Time (ms)",
+                angle: -90,
+                position: "insideLeft",
+              }}
+            />
 
-          <Tooltip />
+            <Tooltip
+              formatter={(value) => [`${value} ms`, "Execution Time"]}
+            />
 
-          <Line
-            type="monotone"
-            dataKey="time"
-            stroke="#1976d2"
-            strokeWidth={3}
-          />
-        </LineChart>
-      </ResponsiveContainer>
+            <Line
+              type="monotone"
+              dataKey="time"
+              stroke="#1976d2"
+              strokeWidth={3}
+              dot={{ r: 5 }}
+              activeDot={{ r: 8 }}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      )}
     </div>
   );
 }
