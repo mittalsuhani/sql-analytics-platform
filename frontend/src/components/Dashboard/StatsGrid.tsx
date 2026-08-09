@@ -19,8 +19,8 @@ interface Props {
 
 function StatsGrid({ stats }: Props) {
   return (
-    <>
-      <Grid size={{ xs: 12, md: 3 }}>
+    <Grid container spacing={3}>
+      <Grid size={{ xs: 12, sm: 6, md: 3 }}>
         <StatCard
           title="Total Queries"
           value={stats.total_queries}
@@ -28,30 +28,30 @@ function StatsGrid({ stats }: Props) {
         />
       </Grid>
 
-      <Grid size={{ xs: 12, md: 3 }}>
+      <Grid size={{ xs: 12, sm: 6, md: 3 }}>
         <StatCard
           title="Average Time"
-          value={`${stats.average_execution_time_ms.toFixed(2)} ms`}
+          value={`${stats.average_execution_time_ms} ms`}
           icon={<FaClock />}
         />
       </Grid>
 
-      <Grid size={{ xs: 12, md: 3 }}>
+      <Grid size={{ xs: 12, sm: 6, md: 3 }}>
         <StatCard
           title="Fastest"
-          value={`${stats.fastest_query_ms.toFixed(2)} ms`}
+          value={`${stats.fastest_query_ms} ms`}
           icon={<FaBolt />}
         />
       </Grid>
 
-      <Grid size={{ xs: 12, md: 3 }}>
+      <Grid size={{ xs: 12, sm: 6, md: 3 }}>
         <StatCard
           title="Slowest"
-          value={`${stats.slowest_query_ms.toFixed(2)} ms`}
+          value={`${stats.slowest_query_ms} ms`}
           icon={<FaStopwatch />}
         />
       </Grid>
-    </>
+    </Grid>
   );
 }
 

@@ -28,7 +28,7 @@ function StatCard({ title, value, icon }: StatCardProps) {
 
         <Typography
           variant="h4"
-          fontWeight="bold"
+          sx={{ fontWeight: "bold" }}
         >
           {value}
         </Typography>

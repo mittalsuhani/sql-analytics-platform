@@ -4,15 +4,46 @@ import "./Sidebar.css";
 function Sidebar() {
   return (
     <aside className="sidebar">
-      <h2>SQL Analytics</h2>
+      <div className="sidebar-title">
+        SQL Analytics
+      </div>
 
-      <ul>
-        <li><NavLink to="/">Dashboard</NavLink></li>
-        <li><NavLink to="/upload">Upload CSV</NavLink></li>
-        <li><NavLink to="/query">Query Editor</NavLink></li>
-        <li><NavLink to="/history">Query History</NavLink></li>
-        <li><NavLink to="/top-queries">Top Queries</NavLink></li>
-        <li><NavLink to="/export">Export</NavLink></li>
+      <ul className="sidebar-menu">
+        <li>
+          <NavLink to="/" end>
+            Dashboard
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink to="/sql">
+            SQL Workspace
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink to="/upload">
+            Upload Dataset
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink to="/history">
+            Query History
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink to="/top-queries">
+            Top Queries
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink to="/export">
+            Export Data
+          </NavLink>
+        </li>
       </ul>
     </aside>
   );
