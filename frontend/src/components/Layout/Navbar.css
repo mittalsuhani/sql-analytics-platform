@@ -1,22 +1,141 @@
 .navbar {
-  height: 70px;
-  padding: 0 30px;
+  height: 72px;
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+
   display: flex;
   align-items: center;
-  background: white;
-  border-bottom: 1px solid #e5e7eb;
+  justify-content: space-between;
+
+  padding: 0 32px;
   box-sizing: border-box;
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-.navbar h1 {
+/* LEFT */
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.navbar-logo {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #2563eb;
+  color: white;
+
+  font-size: 18px;
+
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+}
+
+.navbar-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.navbar-brand h2 {
   margin: 0;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: #111827;
 }
 
-.navbar p {
-  margin: 4px 0 0;
-  font-size: 13px;
+.navbar-brand span {
+  font-size: 12px;
   color: #6b7280;
+}
+
+/* CENTER */
+
+.navbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.page-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #374151;
+
+  padding: 8px 16px;
+
+  background: #f3f4f6;
+  border-radius: 8px;
+}
+
+/* RIGHT */
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.workspace-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 14px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  color: #4b5563;
+  background: #fafafa;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #22c55e;
+
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+  .navbar {
+    padding: 0 18px;
+  }
+
+  .navbar-brand span {
+    display: none;
+  }
+
+  .navbar-center {
+    display: none;
+  }
+
+  .workspace-status span:last-child {
+    display: none;
+  }
+
+  .workspace-status {
+    padding: 9px;
+  }
 }
