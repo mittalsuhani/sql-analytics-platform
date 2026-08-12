@@ -22,11 +22,13 @@ app = FastAPI(
     title="SQL Analytics Platform",
     version="1.0"
 )
+from fastapi.middleware.cors import CORSMiddleware
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "http://127.0.0.1:5173",
+        "https://YOUR-FRONTEND-URL.onrender.com",
     ],
     allow_credentials=True,
     allow_methods=["*"],
