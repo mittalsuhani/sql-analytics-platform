@@ -174,3 +174,4 @@ def top_queries(
 #.\venv\Scripts\Activate
 #python -m uvicorn app.main:app --reload
 #http://127.0.0.1:8000/docs
+# postgres123

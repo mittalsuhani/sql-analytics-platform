@@ -1,16 +1,49 @@
-# Python
-venv/
-__pycache__/
-*.pyc
-.env
 
-# Node.js
+
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Environment variables
+.env
+.env.*
+
+# =========================
+# Backend generated files
+# =========================
+
+uploads/
+exports/
+
+# =========================
+# Node / React
+# =========================
+
 node_modules/
 dist/
 
-# VS Code
-.vscode/
+# =========================
+# IDE
+# =========================
 
-# Operating System
+.vscode/
+.idea/
+
+# =========================
+# OS
+# =========================
+
 .DS_Store
 Thumbs.db
+
+# =========================
+# Logs
+# =========================
+
+*.log
+npm-debug.log*
