@@ -22,13 +22,12 @@ app = FastAPI(
     title="SQL Analytics Platform",
     version="1.0"
 )
-from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "https://YOUR-FRONTEND-URL.onrender.com",
+        "https://sql-analytics-frontend.onrender.com"
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -176,4 +175,3 @@ def top_queries(
 #.\venv\Scripts\Activate
 #python -m uvicorn app.main:app --reload
 #http://127.0.0.1:8000/docs
-# postgres123
