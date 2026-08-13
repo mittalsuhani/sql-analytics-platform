@@ -11,8 +11,6 @@ import shutil
 from app.services.query_service import execute_query
 from app.services.csv_service import analyze_csv
 from sqlalchemy.orm import Session
-from fastapi import Depends
-from app.database import get_db
 import app.crud as crud
 from app.services.export_service import export_to_csv
 from fastapi import HTTPException
