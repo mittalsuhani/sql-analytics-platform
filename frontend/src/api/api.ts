@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://sql-analytics-platform-x6e2.onrender.com",
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 export default api;
