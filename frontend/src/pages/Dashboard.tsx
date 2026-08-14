@@ -1,4 +1,11 @@
 import { useEffect, useState } from "react";
+import {
+  Box,
+  Typography,
+  Alert,
+  CircularProgress,
+} from "@mui/material";
+
 import api from "../api/api";
 
 import StatsGrid from "../components/Dashboard/StatsGrid";
@@ -30,16 +37,23 @@ function Dashboard() {
 
   const [queries, setQueries] = useState<QueryHistory[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   const fetchStats = async () => {
     try {
-      const statsResponse = await api.get("/dashboard/stats");
-      const historyResponse = await api.get("/history");
+      setLoading(true);
+      setError("");
+
+      const [statsResponse, historyResponse] = await Promise.all([
+        api.get("/dashboard/stats"),
+        api.get("/history"),
+      ]);
 
       setStats(statsResponse.data);
       setQueries(historyResponse.data);
     } catch (error) {
       console.error("Dashboard error:", error);
+      setError("Unable to load dashboard data.");
     } finally {
       setLoading(false);
     }
@@ -54,27 +68,85 @@ function Dashboard() {
     .reverse()
     .map((query) => ({
       name: `Q${query.id}`,
-      time: Number(
-        query.execution_time_ms.toFixed(2)
-      ),
+      time: Number(query.execution_time_ms.toFixed(2)),
     }));
 
   if (loading) {
-    return <div>Loading dashboard...</div>;
+    return (
+      <Box
+        sx={{
+          minHeight: "70vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          gap: 2,
+        }}
+      >
+        <CircularProgress />
+        <Typography color="text.secondary">
+          Loading dashboard...
+        </Typography>
+      </Box>
+    );
   }
 
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <Box
+      sx={{
+        maxWidth: 1400,
+        mx: "auto",
+        px: { xs: 2, md: 4 },
+        py: 4,
+      }}
+    >
+      {/* Header */}
+      <Box sx={{ mb: 4 }}>
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: 700,
+            mb: 0.5,
+          }}
+        >
+          Dashboard
+        </Typography>
 
+        <Typography color="text.secondary">
+          Monitor your SQL queries and database performance.
+        </Typography>
+      </Box>
+
+      {/* Error */}
+      {error && (
+        <Alert severity="error" sx={{ mb: 3 }}>
+          {error}
+        </Alert>
+      )}
+
+      {/* Statistics */}
       <StatsGrid stats={stats} />
 
+      {/* Execution Chart */}
       <QueryChart data={chartData} />
 
-      <RecentQueries queries={queries} />
+      {/* Bottom Section */}
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "1fr",
+            lg: "2fr 1fr",
+          },
+          gap: 3,
+          mt: 3,
+        }}
+      >
+        <RecentQueries queries={queries} />
 
-      <TopQueries queries={queries} />
-    </div>
+        <TopQueries queries={queries} />
+      </Box>
+    </Box>
   );
 }
 

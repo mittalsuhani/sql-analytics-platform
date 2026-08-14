@@ -31,23 +31,23 @@ function StatsGrid({ stats }: Props) {
       <Grid size={{ xs: 12, sm: 6, md: 3 }}>
         <StatCard
           title="Average Time"
-          value={`${stats.average_execution_time_ms} ms`}
+          value={`${stats.average_execution_time_ms.toFixed(2)} ms`}
           icon={<FaClock />}
         />
       </Grid>
 
       <Grid size={{ xs: 12, sm: 6, md: 3 }}>
         <StatCard
-          title="Fastest"
-          value={`${stats.fastest_query_ms} ms`}
+          title="Fastest Query"
+          value={`${stats.fastest_query_ms.toFixed(2)} ms`}
           icon={<FaBolt />}
         />
       </Grid>
 
       <Grid size={{ xs: 12, sm: 6, md: 3 }}>
         <StatCard
-          title="Slowest"
-          value={`${stats.slowest_query_ms} ms`}
+          title="Slowest Query"
+          value={`${stats.slowest_query_ms.toFixed(2)} ms`}
           icon={<FaStopwatch />}
         />
       </Grid>

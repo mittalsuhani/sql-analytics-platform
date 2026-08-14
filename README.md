@@ -12,9 +12,8 @@ https://sql-analytics-frontend.onrender.com
 **Backend API:**
 https://sql-analytics-platform-x6e2.onrender.com
 
-**Swagger API Documentation:**  
+**Swagger API Documentation:**!
 https://sql-analytics-platform-x6e2.onrender.com/docs
-
 ---
 
 ## ✨ Features
@@ -137,3 +136,30 @@ https://sql-analytics-platform-x6e2.onrender.com/docs
                     │ Query History           │
                     │ Dataset Metadata        │
                     └─────────────────────────┘
+
+
+## 📸 Screenshots
+
+### 📊 Dashboard
+
+![Dashboard](docs/screenshots/dashboard.jpeg)
+
+### 🧑‍💻 SQL Workspace
+
+![SQL Workspace](docs/screenshots/sql-workspace.jpeg)
+
+### 📁 CSV Upload & Analysis
+
+![CSV Upload](docs/screenshots/upload-csv.jpeg)
+
+### 📝 Query History
+
+![Query History](docs/screenshots/query-history.jpeg)
+
+### 🔝 Top Queries
+
+![Top Queries](docs/screenshots/top-queries.jpeg)
+
+### 📤 Export Results
+
+![Export CSV](docs/screenshots/export-csv.jpeg)

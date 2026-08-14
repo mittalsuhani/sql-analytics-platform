@@ -21,14 +21,16 @@ function QueryChart({ data }: Props) {
   return (
     <div
       style={{
-        width: "100%",
-        height: 400,
-        background: "white",
-        borderRadius: "12px",
-        padding: "20px",
-        marginTop: "30px",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-      }}
+      width: "100%",
+      height: 400,
+      background: "white",
+      borderRadius: "12px",
+      padding: "24px",
+      marginTop: "30px",
+      boxShadow: "0 4px 18px rgba(0,0,0,0.06)",
+      border: "1px solid #e5e7eb",
+      boxSizing: "border-box",
+    }}
     >
       <h2>Query Execution Time</h2>
 
